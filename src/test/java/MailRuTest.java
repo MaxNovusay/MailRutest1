@@ -14,9 +14,8 @@ import java.util.concurrent.TimeUnit;
 
 public class MailRuTest {
 
-
+    private static DriverHelper driverHelper;
     private static Pages pages;
-    private static Elements elements;
 
     @BeforeClass
     public static void initialize() {
@@ -25,9 +24,8 @@ public class MailRuTest {
 //        driver.manage().window().maximize();
 //        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //        driver.get("https://mail.ru");
-        DriverHelper driverHelper = new DriverHelper();
+        driverHelper = new DriverHelper();
         pages = new Pages(driverHelper);
-
 
     }
 
@@ -37,30 +35,7 @@ public class MailRuTest {
 
     @Test
     public void userLogin() {
-       /* loginField.sendKeys("hdgs@mail.ru");
 
-        passwordField.sendKeys("zaq1XSW@");
-
-        loginButtin.click();
-
-        writeBtn.click();
-
-
-
-
-        adressToSend.sendKeys("hdgs@mail.ru");
-        subjectField.sendKeys("Лаборатория качества");
-
-
-        driver.switchTo().frame(we);
-
-        driver.findElement(By.id("tinymce")).click();
-        driver.findElement(By.id("tinymce")).clear();
-        driver.findElement(By.id("tinymce")).sendKeys("123456");
-        driver.switchTo().defaultContent();
-        sendBtn.click();
-
-        pages.assertEquals(msgSent.getText().contains("Ваше письмо отправлено"));*/
 
         pages.autorize("hdgs@mail.ru", "zaq1XSW@");
         pages.clickWriteButton();
@@ -68,7 +43,8 @@ public class MailRuTest {
         pages.fillSubject("Тестовая тема для письма");
         pages.fillMsgField("Тестовое сообщение");
         pages.clickSendButton();
-        pages.assertEquals(true);
+        pages.assertEquals();
+        driverHelper.close();
 
     }
 }

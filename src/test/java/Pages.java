@@ -7,14 +7,20 @@ public class Pages extends Elements {
         super(driverHelper);
   }
 
-// Проверки
-    public  void assertEquals (Boolean getText) {
+  //---------Проверка--------
+
+    /**
+     * Проверка наличия сообщения об отправке
+     */
+    public  void assertEquals () {
         String errMsg = ("Сообщение об отправке отсутствует");
+        Boolean getText = getMsgSent().getText().contains("Ваше письмо отправлено");
         if (!getText) {
             throw new AssertionError(errMsg);
         }
     }
 
+    //------Заполнение полей
     /**
      * Метод авторизации
      * @param login - передать логин
@@ -52,14 +58,18 @@ public class Pages extends Elements {
         getMsgField().sendKeys(msg);
     }
 
+    //-------Нажатие кнопок
     /**
-     * Нажать кнопку отправки сообщения
+     * Нажатие кнопку отправки сообщения
      */
     public void clickSendButton(){
         driver.switchTo().defaultContent();
         getSendBtn().click();
     }
 
+    /**
+     * Нажатие кнопки "Написать"
+     */
     public void clickWriteButton() {getWriteBtn().click();}
 
 }

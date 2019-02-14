@@ -83,12 +83,6 @@ public class Elements {
         return driver.findElement(By.id("tinymce"));
     }
 
-    /**
-     * Получение блока с сообщением об успешной отправке сообщения
-     * @return объект класса WebElement
-     */
-    public WebElement getSuccessValidation(){
-        return driver.findElement(By.cssSelector("div.message-sent__title"));
-    }
+    public WebElement getMsgSent() { return driver.findElement(By.className("message-sent__title")); }
 
 }
