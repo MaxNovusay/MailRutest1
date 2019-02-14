@@ -11,7 +11,7 @@ public class DriverHelper {
 
     public DriverHelper() {
 
-        System.setProperty("webdriver.chrome.driver", "/home/camper/Downloads/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
