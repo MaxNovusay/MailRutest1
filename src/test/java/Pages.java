@@ -12,9 +12,9 @@ public class Pages extends Elements {
     /**
      * Проверка наличия сообщения об отправке
      */
-    public  void assertEquals () {
+    public  void assertSuccessMsgPresent() {
         String errMsg = ("Сообщение об отправке отсутствует");
-        Boolean getText = getMsgSent().getText().contains("Ваше письмо отправлено");
+        Boolean getText = driver.findElement(getMsgSent).getText().contains("Ваше письмо отправлено");
         if (!getText) {
             throw new AssertionError(errMsg);
         }
@@ -27,9 +27,9 @@ public class Pages extends Elements {
      * @param pswd - передать пароль
      */
     public void autorize (String login, String pswd) {
-      getLoginField().sendKeys(login);
-      getPasswordField().sendKeys(pswd);
-      getLoginButton().click();
+        driver.findElement(getLoginField).sendKeys(login);
+        driver.findElement(getPasswordField).sendKeys(pswd);
+        driver.findElement(getLoginButton).click();
     }
 
     /**
@@ -37,7 +37,7 @@ public class Pages extends Elements {
      * @param subject - тема письма
      */
     public void fillSubject (String subject) {
-        getSubjectField().sendKeys(subject);
+        driver.findElement(getSubjectField).sendKeys(subject);
     }
 
     /**
@@ -45,7 +45,7 @@ public class Pages extends Elements {
      * @param address - адресс для отправки
      */
     public void fillAddressToSend (String address) {
-        getAdressToSend().sendKeys(address);
+        driver.findElement(getAdressToSend).sendKeys(address);
     }
 
     /**
@@ -53,9 +53,9 @@ public class Pages extends Elements {
      * @param msg - текст сообщения
      */
     public void fillMsgField (String msg){
-        driver.switchTo().frame(getFrameOfMsgBlock());
-        getMsgField().clear();
-        getMsgField().sendKeys(msg);
+        driver.switchTo().frame(driver.findElement(getFrameOfMsgBlock));
+        driver.findElement(getMsgField).clear();
+        driver.findElement(getMsgField).sendKeys(msg);
     }
 
     //-------Нажатие кнопок
@@ -64,12 +64,12 @@ public class Pages extends Elements {
      */
     public void clickSendButton(){
         driver.switchTo().defaultContent();
-        getSendBtn().click();
+        driver.findElement(getSendBtn).click();
     }
 
     /**
      * Нажатие кнопки "Написать"
      */
-    public void clickWriteButton() {getWriteBtn().click();}
+    public void clickWriteButton() { driver.findElement(getWriteBtn).click();}
 
 }
